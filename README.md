@@ -20,6 +20,24 @@ In practice, the pipeline crashes when the input contains mixed delimiters, null
 ## How to run
 From the repo root:
 
-```bash
+``bash
 python broken/pipeline.py
 python fixed/pipeline.py
+
+## How to test
+Install dependencies:
+pip install -r requirements.txt
+
+## run test
+pytest -q
+
+## Expected behavior
+- `python broken/pipeline.py` fails due to real-world CSV issues (delimiter mismatch, mixed numeric formats, missing values, and invalid integers).
+- `python fixed/pipeline.py` runs successfully, normalizes the input, and writes `output/clean_sales.csv`.
+- `pytest -q` passes:
+  - one test asserts the broken script returns a non-zero exit code
+  - one test asserts the fixed script produces a valid CSV with the expected headers and row count
+
+```bash
+pip install -r requirements.txt
+
